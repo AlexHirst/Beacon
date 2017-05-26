@@ -1,72 +1,85 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="custom.css" rel="stylesheet" media="screen">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="custom.css" rel="stylesheet" media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.string/3.3.4/underscore.string.min.js"></script>
+  </head>
+  <body>
+    <!--Mask-->
+    <div class="view">
+      <!--Intro content-->
+      <div class="full-bg-img flex-center">
 
 
-<!--Mask-->
-<div class="view">
-    <!--Intro content-->
-    <div class="full-bg-img flex-center">
-        
-
-<a href="home.html" class="btn btn-info">
-      <span class="glyphicon glyphicon-home"></span> HOME
-    </a>
-<a href="user.html" class="btn btn-info">
-      <span class="glyphicon glyphicon-user"></span> CHANGE USER
-    </a>
-
- <div class="container">
-  <div class="jumbotron" style="background:transparent !important" style="height: 100px;">
-    <h2 class="text-success text-center">Your Beacon <span class="text-muted text-center">University Hospital of Wales</span></h2>  
-  </div>
-<body>
-
-<div class="container-fluid">
-   <div class="row">
-     <div class="col-sm-4" style="background-color:#f2f2f2">
-      <h4>Your appointment today is with</h4>
-       <p>Alex Hirst</p><br>
-      <h4>The appointment is at</h4>
-       <p>2pm</p><br>
-      <h4>Please follow the map to</h4>
-       <p>Clinical Research</p><br>
-</div>
-
-<div class="col-sm-8" style="background-color:transparent;">
-       <img src="UHW-map.jpg" class="img-rounded" alt=“UHW-map” width=“700” height=“267”>
-</div>
-</div>
-
-<div class="clearfix visible-sm"></div>
-
-<div class="container-fluid">
-<br><br>
-    <div class="row">
-     <div class="col-sm-4" style="background-color:transparent;"> <a href="#" class="btn btn-info btn">
-          <span class="glyphicon glyphicon-earphone"></span> Call for info
+        <a href="home.html" class="btn btn-info">
+          <span class="glyphicon glyphicon-home"></span> HOME
         </a>
-</div>
-  
-<div class="col-sm-4" style="background-color:transparent;"><a href="#" class="btn btn-warning btn center-block">Running 15 mins late
-        </a>
-</div>
-    <div class="col-sm-4" style="background-color:transparent;"><a href="#" class="btn btn-danger btn pull-right">
-          <span class="glyphicon glyphicon-warning-sign"></span> Urgent!
+        <a href="user.html" class="btn btn-success">
+          <span class="glyphicon glyphicon-search"></span> QUICK MAP
         </a>
 
-    </div>
-    <!--/Intro content-->
-</div>
-<!--/.Mask-->
+        <div class="container">
+          <div class="jumbotron" style="background:transparent !important" style="height: 100px;">
+            <h2 class="text-success text-center">Check in <span class="text-muted text-center">University Hospital of Wales</span></h2>  
+          </div>
+          <div id="content">
+            <form metho="POST" class="form-horizontal" id="user-form" action="#">
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="firstname">First name:
+                </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="firstname" placeholder="Your first name" name="firstname">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2">Surname:
+                </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" placeholder="Your surname" name="lastname">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="birthdate">Date of birth:</label>
+                <div class="col-sm-10">          
+                  <input type="date" class="form-control" id="birthdate" placeholder="DD-MM-YYYY" name="birthdate">
+                </div>
+              </div>
+              <div class="form-group">        
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">LOG IN</button>
+                </div>
+              </div>
+            </form>
+          </div>
 
-</body>
+          <div class="container-fluid">
+            <br><br>
+            <div class="row">
+              <div class="col-sm-4" style="background-color:transparent;"> <a href="#" class="btn btn-info btn">
+                  <span class="glyphicon glyphicon-earphone"></span> Call for info
+                </a>
+              </div>
+
+              <div class="col-sm-4" style="background-color:transparent;"><a href="#" class="btn btn-warning btn center-block">Running 15 mins late
+                </a>
+              </div>
+              <div class="col-sm-4" style="background-color:transparent;"><a href="#" class="btn btn-danger btn pull-right">
+                  <span class="glyphicon glyphicon-warning-sign"></span> Urgent!
+                </a>
+
+              </div>
+              <!--/Intro content-->
+            </div>
+            <!--/.Mask-->
+
+            <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+            <script src="js/main.js"></script>
+  </body>
 </html>

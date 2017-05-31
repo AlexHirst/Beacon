@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "staging": "beacon-a0f64",
+    "default": "beacon-a0f64"
+  }
+}

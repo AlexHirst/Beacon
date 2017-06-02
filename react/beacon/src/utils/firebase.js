@@ -1,5 +1,7 @@
 import * as firebase from 'firebase'
 import _ from 'lodash'
+import fk from 'faker'
+import moment from 'moment'
 
 const usersRef = 'users/all';
 const recoRef = 'appointments/all';
@@ -32,8 +34,8 @@ class FB {
     return this.db.child(usersRef + "/" + id);
   }
 
-  fbRecos() {
-    return this.db.child(recoRef);
+  fbRecos(id="") {
+    return this.db.child([recoRef, id].join('/'));
   }
 
   rfidLog(rfid) {
@@ -48,17 +50,6 @@ class FB {
         }
       });
     })
-  }
-
-  addUser(user) {
-    user.id = getUserId(user);
-    this.fbUsers(user.id).once('value').then(function(snapshot) {
-      if(!snapshot.val()) {
-        this.fbUsers().set(user).then(function() {
-          window.location = "index.html";
-        });
-      }
-    });
   }
 
   getUser(id) {
@@ -109,17 +100,53 @@ class FB {
     })
   }
 
-  addRecommendation(reco) {
-    this.getOrCreateUser(reco).then(function(user) {
-      var recoData = _(reco).omit('firstname', 'lastname', 'birthdate')
-        recoData.userId = user.id;
-      this.fbRecos().once('value').then(function(snapshot) {
-        var recos = snapshot.val() || [];
-        recos.push(recoData);
-        this.fbRecos().set(recos);
-      });
+  generateUser(rfid) {
+    return new Promise((resolve, reject) => {
+      this.addUser({
+        id: rfid,
+        rfid: rfid,
+        firstname: fk.name.firstName(),
+        lastname: fk.name.lastName(),
+        birthdate: moment(fk.date.past()).format('YYYY-MM-DD')
+      }).then(resolve)
+    })
+  }
+
+  generateRecos(user) {
+    const total = Math.random() * 10
+    const locations = [
+      'Clinical Research',
+      'Xray',
+      'Radiology',
+      'Oncology'
+    ]
+    let r = []
+    for(let i = 0; i < total; i++) {
+      r.push({
+        appointmentname:`Dr. ${fk.name.lastName()}`,
+        appointmentime: moment(fk.date.future()).format('HH:mm:A'),
+        appointmentlocation: _.sample(locations)
+      })
+    }
+    this.addRecommendations(user, r)
+  }
+
+  addRecommendations(user, reco) {
+    this.fbRecos(user.id).once('value').then((snapshot) => {
+      var recos = snapshot.val() || [];
+      recos.push(...reco);
+      this.fbRecos(user.id).set(recos);
     });
   }
+
+  addUser(user) {
+    return new Promise((resolve) => {
+      this.fbUsers(user.id).set(user).then(function() {
+        resolve(user);
+      })
+    })
+  }
+
 }
 
 export default new FB()

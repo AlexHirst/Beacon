@@ -4,14 +4,22 @@ import fb from '../utils/firebase'
 export default {
   fetchUserByRFID: Effect('fetchUserByRFID', (payload) => {
     fb.rfidLog(payload).then(function(user) {
-      Actions.authUser(user);
+      Actions.user.authUser(user);
+      Actions.generator.gotUser(user)
     }).catch(Actions.showError)
   }),
 
   fetchAppointments: Effect('fetchAppointments', (payload) => {
-    console.log(payload)
     fb.recosForUser(payload).then(function(recos) {
-      Actions.loadAppointments(recos);
+      Actions.user.loadAppointments(recos);
+    })
+  }),
+
+  generateUserData: Effect('generateUserData', (payload) => {
+    fb.rfidLog(payload).then(function(user) {
+      //tell the generator that user already exists ?
+    }).catch(() => {
+      fb.generateUser(payload).then((user) => {fb.generateRecos(user)})
     })
   })
 }

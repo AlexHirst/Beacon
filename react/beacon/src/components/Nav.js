@@ -1,13 +1,10 @@
 import React from 'react';
-import {Actions, Component, Link, Route} from 'jumpsuit'
-import Login from './components/Login';
-import Appointments from './components/Appointments';
-import Generator from './components/Generator';
+import {Component, Link} from 'jumpsuit'
 
 export default Component({
   render() {
     return (
-      <div>
+      <div className="nav">
         <Link to="/" className="btn btn-info">
           <span className="glyphicon glyphicon-home"> HOME</span>
         </Link>
@@ -22,13 +19,7 @@ export default Component({
         </Link>
 
         <hr/>
-
-        <Route path="/" component={Login}/>
-        <Route path="/appointments" component={Appointments}/>
-        <Route path="/generator" component={Generator}/>
       </div>
     );
   }
-}, (state) => {
-  return state
 })

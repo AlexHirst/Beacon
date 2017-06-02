@@ -1,8 +1,7 @@
 import { Actions } from 'jumpstate'
 
 // Has to be the Pi URL
-//const wsUrl = "ws://192.168.7.191:8001/";
-const wsUrl = "ws://localhost:8001/";
+const wsUrl = "ws://192.168.7.191:8001/";
 
 class WS {
   constructor() {
@@ -27,7 +26,8 @@ class WS {
   {
     var msg = JSON.parse(evt.data);
     if (msg.reading) {
-      Actions.fetchUserByRFID(msg.reading)
+      Actions.user.receivedRFID(msg.reading)
+      Actions.generator.receivedRFID(msg.reading)
     }
   }
 

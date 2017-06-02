@@ -4,9 +4,11 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "faker": "^4.1.0",
     "firebase": "^4.1.1",
     "jumpstate": "^2.2.2",
     "jumpsuit": "^2.1.2",
+    "moment": "^2.18.1",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",

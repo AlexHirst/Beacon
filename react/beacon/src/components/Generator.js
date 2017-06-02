@@ -1,22 +1,29 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import React from 'react';
+import {Actions, Component} from 'jumpsuit'
+import Nav from './Nav';
 
-class Generator extends Component {
+export default Component({
+  componentWillReceiveProps(newProps) {
+    if(newProps.generator.generate) {
+      Actions.generateUserData(newProps.generator.lastId)
+    } else if (newProps.generator.lastId !== this.props.lastId){
+      Actions.fetchUserByRFID(newProps.generator.lastId)
+    }
+  },
   render() {
-    const list = this.props.generator.messages.map((a, i) => {
-      return(<div className="col-sm-4">
-      </div>)
+    console.log(this.props)
+    const list = this.props.generator.messages.map((m, i) => {
+      return(<li key={i}>{m}</li>)
     })
     return (
-        <div className="generator">
+        <ul className="generator">
+          <Nav />
           { list }
-        </div>
+        </ul>
     );
   }
-}
-
-export default connect(state => {
+}, (state) => {
   return {
     generator: state.generator
   }
-})(Generator)
+})

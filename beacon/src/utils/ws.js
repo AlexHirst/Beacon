@@ -1,7 +1,7 @@
 import { Actions } from 'jumpstate'
 
 // Has to be the Pi URL
-const wsUrl = "ws://192.168.7.191:8001/";
+const wsUrl = "ws://192.168.7.190/ws";
 
 class WS {
   constructor() {

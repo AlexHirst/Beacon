@@ -8,7 +8,7 @@ export default Component({
   },
   render() {
     const list = this.props.user.appointments.map((a, i) => {
-      const img = `/img/UHW-map-${ a.appointmentlocation }.jpg`
+      const img = `${process.env.PUBLIC_URL}/img/UHW-map-${ a.appointmentlocation.toLowerCase() }.jpg`
       return(
         <div key={i} className="row">
           <div className="col-sm-4">

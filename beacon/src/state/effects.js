@@ -1,5 +1,6 @@
 import { Effect, Actions } from 'jumpstate'
 import fb from '../utils/firebase'
+import ws from '../utils/ws'
 
 export default {
   fetchUserByRFID: Effect('fetchUserByRFID', (payload) => {
@@ -21,5 +22,10 @@ export default {
     }).catch(() => {
       fb.generateUser(payload).then((user) => {fb.generateRecos(user)})
     })
+  }),
+
+  updatePiIp: Effect('updatePiIp', (payload) => {
+    console.log(payload)
+    ws.changeIp(payload.ip)
   })
 }

@@ -5,11 +5,24 @@ const wsUrl = "ws://192.168.7.190/ws";
 
 class WS {
   constructor() {
-    this.websocket = new WebSocket(wsUrl);
+    this.url = wsUrl
+    this.connect()
+  }
+
+  connect() {
+    this.websocket = new WebSocket(this.url);
     this.websocket.onopen = this.onOpen.bind(this)
     this.websocket.onclose = this.onClose.bind(this)
     this.websocket.onmessage = this.onMessage.bind(this)
     this.websocket.onerror = this.onError.bind(this)
+  }
+
+  changeIp(ip) {
+    this.url = `ws://${ip}/ws`
+    if (this.websocket) {
+      this.websocket.close()
+    }
+    this.connect()
   }
 
   onOpen(evt)
@@ -40,6 +53,7 @@ class WS {
   disconnect() {
     this.websocket.close();
   }
+
 }
 
 export default new WS()

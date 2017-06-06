@@ -1,5 +1,5 @@
 import React from 'react';
-import {Actions, Component, Goto} from 'jumpsuit'
+import {Actions, Component} from 'jumpsuit'
 import Nav from './Nav';
 
 export default Component({

@@ -25,7 +25,6 @@ export default {
   }),
 
   updatePiIp: Effect('updatePiIp', (payload) => {
-    console.log(payload)
     ws.changeIp(payload.ip)
   })
 }

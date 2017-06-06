@@ -2,6 +2,7 @@ import * as firebase from 'firebase'
 import _ from 'lodash'
 import fk from 'faker'
 import moment from 'moment'
+import {Actions} from 'jumpsuit'
 
 const usersRef = 'users/all';
 const recoRef = 'appointments/all';
@@ -28,6 +29,20 @@ class FB {
   constructor() {
     firebase.initializeApp(config)
     this.db = firebase.database().ref();
+    this.getIp()
+  }
+
+  getIp() {
+    var ipRef = this.db.child('/ip')
+    ipRef.on('value', function(ss) {
+      var v = ss.val()
+      console.log('IP', v)
+      if(v && v[0]) {
+        Actions.updatePiIp({
+          ip: v[0],
+        })
+      }
+    })
   }
 
   fbUsers(id="") {

@@ -20,7 +20,7 @@ class WS {
   changeIp(ip) {
     this.url = `ws://${ip}/ws`
     if (this.websocket) {
-      this.websocket.close()
+      this.disconnect()
     }
     this.connect()
   }

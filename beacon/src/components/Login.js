@@ -5,7 +5,7 @@ import Nav from './Nav';
 export default Component({
   handleSubmit(e) {
     e.preventDefault()
-    Actions.login({
+    Actions.user.login({
       firstname: this.refs.firstname.value,
       lastname: this.refs.lastname.value,
       birthdate: this.refs.birthdate.value,

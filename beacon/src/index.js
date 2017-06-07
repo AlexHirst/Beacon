@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Appointments from './components/Appointments';
 import Generator from './components/Generator';
 import Conf from './components/Conf';
+import Map from './components/Map';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/custom.css';
@@ -25,5 +26,6 @@ Render(state,(
     <Route path="/appointments" component={Appointments}/>
     <Route path="/generator" component={Generator}/>
     <Route path="/conf" component={Conf}/>
+    <Route path="/map" component={Map}/>
   </Router>
 ));

@@ -4,7 +4,9 @@
     <title>NHS Beacon</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="%PUBLIC_URL%/custom.css" rel="stylesheet" media="screen">
+    <link href="custom.css" rel="stylesheet" media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
     <!--Mask-->
@@ -15,22 +17,26 @@
 
         <div class="container">
           <div class="jumbotron" style="background:transparent !important" style="height: 100px;">
-            <h2 class="text-success text-center">Check in <span class="text-muted text-center">University Hospital of Wales</span></h2>  
+            <h2 class="text-success text-center">The University Hospital of Wales</h2>
+            <h2 class="text-success text-center">Compass Point</h2>
+            <h2 class="text-success text-center"> </h2>
+            <h2 class="text-success text-center"> </h2>
+            <h4 class="text-muted text-center">Tap your visitors card or login below for your personalised routes</h4>
           </div>
           <div id="root"></div>
 
           <div class="container-fluid">
             <br><br>
             <div class="row">
-              <div class="col-sm-4" style="background-color:transparent;"> <a href="#" class="btn btn-info btn">
+              <div class="col-sm-4" style="background-color:transparent;"> <a href="#" class="btn-lg btn-info btn">
                   <span class="glyphicon glyphicon-earphone"></span> Call for info
                 </a>
               </div>
 
-              <div class="col-sm-4" style="background-color:transparent;"><a href="#" class="btn btn-warning btn center-block">Running 15 mins late
+              <div class="col-sm-4" style="background-color:transparent;"><a href="#" class="btn-lg btn-warning btn center-block">Running 15 mins late
                 </a>
               </div>
-              <div class="col-sm-4" style="background-color:transparent;"><a href="#" class="btn btn-danger btn pull-right">
+              <div class="col-sm-4" style="background-color:transparent;"><a href="#" class="btn-lg btn-danger btn pull-right">
                   <span class="glyphicon glyphicon-warning-sign"></span> Urgent!
                 </a>
 

@@ -8,7 +8,7 @@ export default Component({
     return (
       <div>
         <Nav />
-        <img src={map} alt="Map" />
+        <img src={map} alt="Map" className="img-responsive center-block" width="400" height="400" />
       </div>
     );
   }

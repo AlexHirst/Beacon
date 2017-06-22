@@ -11,25 +11,28 @@ export default Component({
       const img = `${process.env.PUBLIC_URL}/img/UHW-map-${ a.appointmentlocation.toLowerCase() }.jpg`
       return(
         <div key={i} className="row">
+        <h3 className="text-center">Scroll to see next appointment</h3>
+        <h3> </h3>
+        <h3> </h3>
           <div className="col-sm-4">
-            <h4>Your appointment today is with</h4>
+            <h4>Who is your appointment with:</h4>
             <p>
               { a.appointmentname }
             </p>
             <br />
-            <h4>The appointment is at</h4>
+            <h4>What time is your appointment:</h4>
             <p>
               { a.appointmentime }
             </p>
             <br />
-            <h4>Please follow the map to</h4>
+            <h4>Where is your appointment</h4>
             <p>
               { a.appointmentlocation }
             </p>
             <br />
           </div>
           <div className="col-sm-8">
-            <img alt="position" src={img} className="img-rounded" width="700" height="267" />
+            <img alt="position" src={img} className="img-rounded" width="500" height="400" />
           </div>
           <hr />
         </div>)

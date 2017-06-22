@@ -39,6 +39,8 @@ export default Component({
                 />
             </div>
           </div>
+        <div>
+         </div>
           <div className="form-group">
             <label className="control-label col-sm-2">Surname:
             </label>

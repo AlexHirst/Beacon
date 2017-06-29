@@ -2,10 +2,12 @@ import * as firebase from 'firebase'
 import _ from 'lodash'
 import fk from 'faker'
 import moment from 'moment'
-import {Actions} from 'jumpsuit'
+import { Actions } from 'jumpstate'
 
 const usersRef = 'users/all';
 const recoRef = 'appointments/all';
+const ledsRef = 'selected_map';
+const rfidRef = 'uid';
 
 const config = {
   apiKey: "AIzaSyDZ0OWlMS5-0t4t6JMMsrw5-sUGwwK69Vw",
@@ -29,20 +31,7 @@ class FB {
   constructor() {
     firebase.initializeApp(config)
     this.db = firebase.database().ref();
-    this.getIp()
-  }
-
-  getIp() {
-    var ipRef = this.db.child('/ip')
-    ipRef.on('value', function(ss) {
-      var v = ss.val()
-      console.log('IP', v)
-      if(v && v[0]) {
-        Actions.updatePiIp({
-          ip: v[0],
-        })
-      }
-    })
+    this.listenToRfid();
   }
 
   fbUsers(id="") {
@@ -51,6 +40,14 @@ class FB {
 
   fbRecos(id="") {
     return this.db.child([recoRef, id].join('/'));
+  }
+
+  fbLeds() {
+    return this.db.child(ledsRef);
+  }
+
+  fbRfid() {
+    return this.db.child(rfidRef);
   }
 
   rfidLog(rfid) {
@@ -65,6 +62,14 @@ class FB {
         }
       });
     })
+  }
+
+  listenToRfid() {
+    return this.fbRfid().on('value', (snapshot) => {
+      let msg = snapshot.val();
+      Actions.user.receivedRFID(msg.reading)
+      //Actions.generator.receivedRFID(msg.reading)
+    });
   }
 
   getUser(id) {
@@ -90,6 +95,13 @@ class FB {
         });
       });
     });
+  }
+
+  lightArrow(pos, status) {
+    this.fbLeds().set({led: {
+      pos,
+      status
+    }});
   }
 
   recosForUser(id) {

@@ -1,6 +1,5 @@
 import { Effect, Actions } from 'jumpstate'
 import fb from '../utils/firebase'
-import ws from '../utils/ws'
 
 export default {
   fetchUserByRFID: Effect('fetchUserByRFID', (payload) => {
@@ -24,10 +23,6 @@ export default {
     })
   }),
 
-  updatePiIp: Effect('updatePiIp', (payload) => {
-    ws.changeIp(payload.ip)
-  }),
-
   lightArrow: Effect('lightArrow', (payload) => {
     const locations = {
       'Clinical Research': 0,
@@ -35,7 +30,7 @@ export default {
       'Radiology': 2,
       'Oncology': 3
     }
-    ws.lightArrow(
+    fb.lightArrow(
       locations[payload.appointment.appointmentlocation],
       1
     )

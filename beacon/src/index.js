@@ -12,7 +12,6 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/custom.css';
 import './utils/firebase'
-import './utils/ws'
 import './state/effects'
 
 const state = {

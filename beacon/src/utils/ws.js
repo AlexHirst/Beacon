@@ -50,6 +50,13 @@ class WS {
     this.websocket.close();
   }
 
+  lightArrow(pos, status) {
+    this.websocket.send(JSON.stringify({led: {
+      pos,
+      status
+    }}))
+  }
+
   disconnect() {
     this.websocket.close();
   }

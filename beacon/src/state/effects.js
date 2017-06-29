@@ -26,5 +26,18 @@ export default {
 
   updatePiIp: Effect('updatePiIp', (payload) => {
     ws.changeIp(payload.ip)
+  }),
+
+  lightArrow: Effect('lightArrow', (payload) => {
+    const locations = {
+      'Clinical Research': 0,
+      'Xray': 1,
+      'Radiology': 2,
+      'Oncology': 3
+    }
+    ws.lightArrow(
+      locations[payload.appointment.appointmentlocation],
+      1
+    )
   })
 }

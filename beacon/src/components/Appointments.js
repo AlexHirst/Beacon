@@ -13,6 +13,14 @@ export default Component({
     window.addEventListener('scroll', this.debouncedScroll)
     this.onScroll()
   },
+  componentWillReceiveProps(newProps) {
+    console.log(newProps.user, this.props.user)
+    if (newProps.user.receivedRFID && newProps.user.receivedRFID !== this.props.user.receivedRFID) {
+      Actions.fetchUserByRFID(newProps.user.receivedRFID)
+      Actions.fetchAppointments(newProps.user.receivedRFID)
+      this.onScroll()
+    }
+  },
   componentWillUnmount() {
     window.removeEventListener('scroll', this.debouncedScroll)
   },

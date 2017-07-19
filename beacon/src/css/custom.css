@@ -5,3 +5,14 @@ body{
 h2 {
     text-shadow: 1px 1px 1px #000000;
 }
+p {
+    color: white;
+    font-size: 20px;
+}
+kbd {
+    background-color: white;
+    color: black;
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+}

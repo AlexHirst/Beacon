@@ -1,5 +1,8 @@
 import { Effect, Actions } from 'jumpstate'
+import { Goto } from 'jumpsuit'
 import fb from '../utils/firebase'
+
+var ttl
 
 export default {
   fetchUserByRFID: Effect('fetchUserByRFID', (payload) => {
@@ -34,5 +37,18 @@ export default {
       locations[payload.appointment.appointmentlocation],
       1
     )
+    Actions.resetUserTimeout()
+  }),
+
+  resetUserTimeout: Effect('resetUserTimeout', (payload) => {
+    if(ttl) {
+      window.clearTimeout(ttl)
+    }
+    ttl = window.setTimeout(()=> {
+      fb.resetRfid()
+      Goto({
+        path: '/'
+      })
+    }, 30000)
   })
 }

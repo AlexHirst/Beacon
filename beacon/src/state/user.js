@@ -7,7 +7,7 @@ export default State('user', {
     rfid: null,
     firstname: "",
     lastname: "",
-    birthdate: "1970-01-01",
+    birthdate: "",
     error: "",
     appointments: []
   },
@@ -28,8 +28,18 @@ export default State('user', {
       receivedRFID
     }
   },
+  unlogUser (state) {
+    return {
+      ...state,
+      receivedRFID: null,
+      rfid: null,
+      firstname: "",
+      lastname: "",
+      birthdate: "",
+      appointments: []
+    }
+  },
   authUser (state, user) {
-    console.log(user);
     return {
       ...state,
       ...user

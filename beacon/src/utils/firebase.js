@@ -67,9 +67,17 @@ class FB {
   listenToRfid() {
     return this.fbRfid().on('value', (snapshot) => {
       let msg = snapshot.val();
-      Actions.user.receivedRFID(msg.reading)
+      if(msg && msg.reading) {
+        Actions.user.receivedRFID(msg.reading)
+      } else {
+        Actions.user.unlogUser()
+      }
       //Actions.generator.receivedRFID(msg.reading)
     });
+  }
+
+  resetRfid() {
+    return this.fbRfid().set({reading: null});
   }
 
   getUser(id) {
